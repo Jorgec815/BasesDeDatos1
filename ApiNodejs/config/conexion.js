@@ -1,8 +1,13 @@
 const mysql = require('mysql');
+
+require('dotenv').config();
+
+console.log(process.env.DB_USER);
+
 const conexion = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '123456',
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
     port: '3306',
     database: 'cuadrangulares_db'
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EquipoService} from '../../servicios/equipo.service'
-import {Equipo, Partido} from '../../servicios/equipo.service'
+import {Equipo} from '../../models/equipo'
+import {Partido} from '../../models/partido'
 
 
 @Component({

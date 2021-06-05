@@ -117,31 +117,4 @@ rutas.put('/empate/:id', (req, res)=>{
     })
 })
 
-//--------------------------para los partidos-------------------------
-
-rutas.get('/obtenerPartidos', (req, res)=>{
-    let sql = 'select * from partidos'
-    conexion.query(sql, (err, rows, fields)=>{
-        if(err) throw err;
-        else{
-            res.json(rows)
-        }
-    })
-})
-
-//agregar Partido
-rutas.post('/agregarPartido' ,(req, res)=>{
-    const {id_equipo1} = req.body
-    const {id_equipo2} = req.body
-    const {goles_equipo1} = req.body
-    const {goles_equipo2} = req.body
-    let sql = `insert into partidos(id_equipo1,id_equipo2,goles_equipo1,goles_equipo2) values('${id_equipo1}','${id_equipo2}','${goles_equipo1}','${goles_equipo2}')`
-    conexion.query(sql, (err, rows, fields)=>{
-        if(err) throw err
-        else{
-            res.json({status: 'partido agregado'})
-        }
-    })
-})
-
 module.exports = rutas;

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http';
+import {Equipo} from '../models/equipo'
 
 @Injectable({
   providedIn: 'root'
@@ -49,24 +50,4 @@ export class EquipoService {
   contarRegistros(){
      return this.http.get(this.url+'/cantidadEquipos')
   }
-}
-
-
-export interface Equipo{
-  id_equipo:number;
-  nombre: string;
-  puntos: number;
-  partidos_jugados: number;
-  partidos_ganados: number;
-  partidos_empatados: number;
-  partidos_perdidos: number;
-  goles_favor: number;
-  goles_contra: number;
-}
-
-export interface Partido{
-  id_equipo1:number;
-  id_equipo2: number;
-  goles_equipo1: number;
-  goles_equipo2: number;
 }

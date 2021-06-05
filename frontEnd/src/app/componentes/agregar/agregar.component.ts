@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Equipo, EquipoService} from '../../servicios/equipo.service';
+import {EquipoService} from '../../servicios/equipo.service';
 import {Router} from '@angular/router';
+import {Equipo} from '../../models/equipo'
 
 @Component({
   selector: 'app-agregar',

@@ -1,0 +1,11 @@
+<div class="container">
+    <h1>Agregar equipo</h1>
+
+    <div class="mb-3">
+        <form>
+            <label class="form-label">Nombre</label>
+            <input [(ngModel)]="equipo.nombre"  type="text" class="form-control" name="nombre">
+        </form>
+    </div>
+    <button (click)="contarEquipos()" type="button" class="btn btn-success">Agregar</button>
+</div>

@@ -1,0 +1,70 @@
+
+<div class="container">
+    <h1>Agregar Partido</h1>
+
+    <div class="row">
+        <div class="col">
+            <form>
+                <label class="form-label">Id equipo 1</label>
+                <input [(ngModel)]="partido.id_equipo1"  type="number" class="form-control" name="id_equipo1">
+            </form>
+        </div>
+        
+        <div class="col">
+            <form>
+                <label class="form-label">Goles equipo 1</label>
+                <input [(ngModel)]="partido.goles_equipo1"  type="number" class="form-control" name="goles_equipo1">
+            </form>
+        </div>
+        <div class="col">
+            <form>
+                <label class="form-label">Goles equipo 2</label>
+                <input [(ngModel)]="partido.goles_equipo2"  type="number" class="form-control" name="goles_equipo2">
+            </form>
+        </div>
+
+        <div class="col">
+            <form>
+                <label class="form-label">Id equipo 2</label>
+                <input [(ngModel)]="partido.id_equipo2"  type="number" class="form-control" name="id_equipo2">
+            </form>
+        </div>
+        
+        <div class="col">
+            <button (click)="agregarPartido()" type="button" class="btn btn-success">Agregar</button>
+        </div>
+    </div>
+
+    
+
+    <h1>Tabla de puntajes</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">PT</th>
+            <th scope="col">PJ</th>
+            <th scope="col">PG</th>
+            <th scope="col">PE</th>
+            <th scope="col">PP</th>
+            <th scope="col">GF</th>
+            <th scope="col">GC</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor = "let equipo of ListarEquipos">
+            <th>{{equipo.id_equipo}}</th>
+            <td>{{equipo.nombre}}</td>
+            <td>{{equipo.puntos}}</td>
+            <td>{{equipo.partidos_jugados}}</td>
+            <td>{{equipo.partidos_ganados}}</td>
+            <td>{{equipo.partidos_empatados}}</td>
+            <td>{{equipo.partidos_perdidos}}</td>
+            <td>{{equipo.goles_favor}}</td>
+            <td>{{equipo.goles_contra}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

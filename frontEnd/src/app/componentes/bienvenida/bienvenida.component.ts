@@ -50,7 +50,7 @@ export class BienvenidaComponent implements OnInit {
 
     if(con === con2){
       this.cliente.passv=con
-      this.equipoService.editarEquipo(this.cliente.id, this.cliente ).subscribe()
+      this.equipoService.editarCliente(this.cliente.id, this.cliente ).subscribe()
           Swal.fire({
             title: 'Registro correcto',
             text: `Se ingresaron correctamente los datos`,
@@ -66,7 +66,7 @@ export class BienvenidaComponent implements OnInit {
   }
 
   loadCliente(id: string){
-    this.equipoService.getUnEquipo(id).subscribe(
+    this.equipoService.getUnCliente(id).subscribe(
       (data: any)=>{
         this.cliente.id=data[0].ID
         this.cliente.nombre=data[0].NOMBRE

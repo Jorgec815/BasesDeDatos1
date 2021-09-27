@@ -36,15 +36,13 @@ export class AgregarComponent implements OnInit {
 
     }
     console.log(cliente)
-    this.equipoService.agregarEquipo(cliente).subscribe()
+    this.equipoService.agregarCliente(cliente).subscribe()
 
         Swal.fire({
           title: 'Registro correcto',
           text: `Se ingresaron correctamente los datos`,
           icon: 'success',
         })
-      
-    
   }
 
   get primCorreo(){

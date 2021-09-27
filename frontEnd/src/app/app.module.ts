@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MostrarPuntajeComponent } from './componentes/mostrar-puntaje/mostrar-puntaje.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -13,7 +12,6 @@ import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.compone
 @NgModule({
   declarations: [
     AppComponent,
-    MostrarPuntajeComponent,
     AgregarComponent,
     BienvenidaComponent,
   ],

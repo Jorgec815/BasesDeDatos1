@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {EquipoService} from '../../servicios/equipo.service';
 import {Router} from '@angular/router';
 import {Equipo} from '../../models/equipo'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-agregar',
@@ -10,53 +13,49 @@ import {Equipo} from '../../models/equipo'
 })
 export class AgregarComponent implements OnInit {
 
-  registros: number;
-
-  equipo: Equipo={
-    id_equipo: 0,
-    nombre: ' ',
-    puntos: 0,
-    partidos_jugados:0,
-    partidos_ganados:0,
-    partidos_empatados:0,
-    partidos_perdidos:0,
-    goles_favor:0,
-    goles_contra:0,
-  }
-  constructor(private EquipoService: EquipoService, private router:Router) {
+  formRegistro: FormGroup;
+  constructor(private equipoService: EquipoService, private router:Router) {
   }
 
   ngOnInit(): void {
+    this.formRegistro = new FormGroup({
+      nombre: new FormControl('', [Validators.required]),
+      apellido: new FormControl('', [Validators.required]),
+      fecha_nacimiento: new FormControl('', [Validators.required]),
+      correo: new FormControl('', [Validators.required,  	Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])
+    })
   }
 
-  agregarEquipo(){
-    delete this.equipo.id_equipo;
-    delete this.equipo.puntos;
-    delete this.equipo.partidos_jugados;
-    delete this.equipo.partidos_ganados;
-    delete this.equipo.partidos_empatados;
-    delete this.equipo.partidos_perdidos;
-    delete this.equipo.goles_favor;
-    delete this.equipo.goles_contra;
+  guardarCliente(){
+    console.log("Guardar")
+    var cliente = {
+      nombre: this.formRegistro.get('nombre').value,
+      apellido: this.formRegistro.get('apellido').value,
+      fechaNacimiento: this.formRegistro.get('fecha_nacimiento').value,
+      correo: this.formRegistro.get('correo').value,
 
-    this.EquipoService.agregarEquipo(this.equipo).subscribe();
-    this.router.navigate(['/puntajes'])    
+    }
+    console.log(cliente)
+    this.equipoService.agregarEquipo(cliente).subscribe()
+
+        Swal.fire({
+          title: 'Registro correcto',
+          text: `Se ingresaron correctamente los datos`,
+          icon: 'success',
+        })
+      
+    
   }
 
-  contarEquipos(){
-    this.EquipoService.contarRegistros().subscribe(
-      res=>{
-        console.log(res[0].total);
-        this.registros = parseInt(res[0].total,10);
-        if(this.registros >= 4){
-          console.log("entro 1");
-          window.alert("Ya hay 4 Equipos registrados");
-        }else{
-          console.log("entro 2");
-          this.agregarEquipo();
-        }
-      },
-      err => console.log(err)
-    )
+  get primCorreo(){
+    return this.formRegistro.get('correo')
   }
+  
 }
+
+
+
+
+
+
+

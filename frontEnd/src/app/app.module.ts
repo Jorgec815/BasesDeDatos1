@@ -6,20 +6,23 @@ import { AppComponent } from './app.component';
 import { MostrarPuntajeComponent } from './componentes/mostrar-puntaje/mostrar-puntaje.component';
 
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AgregarComponent } from './componentes/agregar/agregar.component';
+import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MostrarPuntajeComponent,
     AgregarComponent,
+    BienvenidaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

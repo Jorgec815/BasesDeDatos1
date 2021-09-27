@@ -7,7 +7,7 @@ import {Equipo} from '../models/equipo'
 })
 export class EquipoService {
 
-  url = '/api';
+  url = 'http://localhost:3000/';
   constructor(private http: HttpClient) { }
 
   //obtener equipos
@@ -18,13 +18,18 @@ export class EquipoService {
 
   //obtener un equipo
   getUnEquipo(id: string){
-    return this.http.get(this.url+'/'+id)
+    return this.http.get(this.url+'cliente/'+id)
   }
 
   //agregar un equipo
-  agregarEquipo(equipo:Equipo){
-    return this.http.post(this.url, equipo);
+  agregarEquipo(data: any){
+    return this.http.post(this.url + "cliente", data);
   }
+
+  editarEquipo(id: string, data: any){
+    return this.http.post(this.url + "cliente/"+id, data);
+  }
+
 
 
   //eliminar equipo

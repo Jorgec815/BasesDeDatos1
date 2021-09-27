@@ -1,11 +1,44 @@
-<div class="container">
-    <h1>Agregar equipo</h1>
+<div class="container-fluid" >
+    <br>
+    <form [formGroup]="formRegistro">
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba su nombre" formControlName="nombre">
+              </div>
+        </div>
+        <br>
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba su apellido" formControlName="apellido">
+              </div>
+        </div>
+        <br>
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="exampleFormControlInput1" placeholder="Escriba su nombre" formControlName="fecha_nacimiento">
+              </div>
+        </div>
+        <br>
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Correo:</label>
+                <input [class.is-invalid] = "formRegistro.get('correo').invalid && formRegistro.get('correo').touched" type="text" class="form-control" id="exampleFormControlInput1" formControlName="correo">
+                <div *ngIf="(primCorreo.invalid && primCorreo.touched) || primCorreo.dirty">
+                    <small *ngIf="primCorreo.errors?.required" class="text-danger">Correo es un campo requerido</small>
+                    <!--question mark(?) is a safe navigation operator-->
+                    <small *ngIf="primCorreo    .errors?.pattern" class="text-danger">Por favor ingrese un correo valido</small>
+                </div>
+            </div>
+        </div>
 
-    <div class="mb-3">
-        <form>
-            <label class="form-label">Nombre</label>
-            <input [(ngModel)]="equipo.nombre"  type="text" class="form-control" name="nombre">
-        </form>
-    </div>
-    <button (click)="contarEquipos()" type="button" class="btn btn-success">Agregar</button>
+        <div style="margin: 1rem;">
+            <button [disabled]="!formRegistro.valid" color="primary" type="button" class="btn btn-success" (click)="guardarCliente()">
+                Guardar
+            </button>
+        </div>
+       
+    </form>
 </div>

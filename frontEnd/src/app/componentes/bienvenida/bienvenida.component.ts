@@ -12,9 +12,7 @@ import Swal from 'sweetalert2';
 })
 export class BienvenidaComponent implements OnInit {
 
-  data = {
-    correo: 'bcvbvc'
-  }
+  
 
   cliente = {
     id: '',
@@ -68,17 +66,15 @@ export class BienvenidaComponent implements OnInit {
   }
 
   loadCliente(id: string){
-    console.log("Load clientes")
-    console.log(id)
-    this.data.correo="dasdasd"
     this.equipoService.getUnEquipo(id).subscribe(
       (data: any)=>{
-        this.cliente.id=data.ID
-        this.cliente.nombre=data.NOMBRE
-        this.cliente.apellido=data.APELLIDO
+        this.cliente.id=data[0].ID
+        this.cliente.nombre=data[0].NOMBRE
+        this.cliente.apellido=data[0].APELLIDO
+        this.cliente.usuario = this.cliente.nombre.substring(0,2)+ this.cliente.apellido.substring(-3,3)+id
       }
     )
-    this.cliente.usuario = this.nombre.substr(1,3)+this.apellido.substr(-3,3)+id
+    
   }
   
 }

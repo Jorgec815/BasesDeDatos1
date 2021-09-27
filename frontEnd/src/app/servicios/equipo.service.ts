@@ -27,7 +27,7 @@ export class EquipoService {
   }
 
   editarEquipo(id: string, data: any){
-    return this.http.post(this.url + "cliente/"+id, data);
+    return this.http.put(this.url + "cliente/"+id, data);
   }
 
 

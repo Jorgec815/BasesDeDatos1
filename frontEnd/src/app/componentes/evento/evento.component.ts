@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl,Validators, AbstractControl } from '@angular/forms';
 import { OlimpiadasService } from 'src/app/servicios/olimpiadas.service';
 import Swal from 'sweetalert2';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-evento',
@@ -22,7 +22,7 @@ export class EventoComponent implements OnInit {
   deporte: any
   codPersona : string
   formEvento : FormGroup
-  constructor(private formBuilder: FormBuilder, private olimpiadas : OlimpiadasService,  private rutaActiva: ActivatedRoute) { 
+  constructor(private formBuilder: FormBuilder, private olimpiadas : OlimpiadasService,  private rutaActiva: ActivatedRoute, private router: Router ) { 
     this.loadSedes()
     this.sedeSelected=false;
     this.areaSelected=false;
@@ -118,6 +118,11 @@ export class EventoComponent implements OnInit {
           title: 'Registro correcto',
           text: `Se registro el evento de manera correcta`,
           icon: 'success',
+        }).then((result) => {
+          if (result.value){
+            var route = "prestamo/"+this.codPersona
+            this.router.navigate([route])
+          }
         })
       }else{
         Swal.fire({

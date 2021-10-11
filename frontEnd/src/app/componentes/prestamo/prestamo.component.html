@@ -1,0 +1,45 @@
+<div class="container-fluid" >
+    <br>
+    <form [formGroup]="formPrestamo">
+        <div class="row" id="map_section">
+            <label for="formGroupExampleInput" class="form-label">Seleccione la sede en la que desea realizar el prestamo:</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeS()" formControlName="sede" >
+                <option selected>Elija una de las siguientes opciones:</option>
+                <option >--</option>
+                <option *ngFor="let sede of sedes" [value]="sede.IDCOMPLEJO" >{{sede.NOMCOMPLEJO}}</option>
+              </select>
+        </div>
+        <br>
+        <div >
+            <label for="formGroupExampleInput" class="form-label">Seleccione el equipo para prestamo:</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeEQ($event.value)" formControlName="equipo">
+                <option selected>Elija una de las siguientes opciones:</option>
+                <option >--</option>
+                <option *ngFor="let equipo of equipos" [value]="equipo"  >{{equipo.NOMEQUIPO}}</option>
+              </select>
+        </div>
+        <br>
+        <div class="row" id="map_section" >
+            <label for="formGroupExampleInput" class="form-label">Para que desea el equipo</label>
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeES($event.value)" formControlName="estado" >
+                <option selected>Elija una de las siguientes opciones:</option>
+                <option >--</option>
+                <option *ngFor="let estado of estados" [value]="estado.IDESTADO">{{estado.DESCESTADO}}</option>
+              </select>
+        </div>
+        <br>
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Fecha del prestamo:</label>
+                <input type="date" class="form-control" id="exampleFormControlInput1"  formControlName="fecha">
+              </div>
+        </div>
+
+        <div style="margin: 1rem;">
+            <button [disabled]="" color="primary" type="button" class="btn btn-success" (click)="guardarPrestamo()">
+                Registrar prestamo
+            </button>
+        </div>
+       
+    </form>
+</div>

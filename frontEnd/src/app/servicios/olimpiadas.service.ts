@@ -41,4 +41,21 @@ export class OlimpiadasService {
   postEvento(data){
     return this.http.post(this.url+"evento", data)
   }
+
+  //obtener todas las areas
+  getEquipos(idSede: string){
+    return this.http.get(this.url+'equipo_sede/'+idSede)
+  }
+
+   //obtener todas las areas
+  getEstados(){
+    return this.http.get(this.url+'estado')
+  } 
+
+
+  //guardar prestamo
+  postPrestamo(data){
+    return this.http.post(this.url+"prestamo", data)
+  }
+
 }

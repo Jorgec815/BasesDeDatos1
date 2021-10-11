@@ -2,33 +2,15 @@
     <br>
     
         <h3>
-            Bienvenido, por favor ingrese su Contraseña:
+            Bienvenido, por favor ingrese su usuario y contraseña:
         </h3>
         <br>
 
     <form [formGroup]="formRegistro">
         <div class="row" id="map_section">
             <div class="col-12 col-m-6 col-lg-2">
-                <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
-                <br>
-                <label for="exampleFormControlInput1" class="form-label">{{cliente.nombre}}</label>
-              </div>
-        </div>
-        <br>
-        <div class="row" id="map_section">
-            <div class="col-12 col-m-6 col-lg-2">
-                <label for="exampleFormControlInput1" class="form-label">Apellido:</label>
-                <br>
-                <label for="exampleFormControlInput1" class="form-label">{{cliente.apellido}}</label>
-
-              </div>
-        </div>
-        <br>
-        <div class="row" id="map_section">
-            <div class="col-12 col-m-6 col-lg-2">
                 <label for="exampleFormControlInput1" class="form-label">Usuario:</label>
-                <br>
-                <label for="exampleFormControlInput1" class="form-label">{{cliente.usuario}}</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Escriba su usuario" formControlName="usuario">
               </div>
         </div>
         <br>
@@ -39,19 +21,10 @@
               </div>
         </div>
         <br>
-        <div class="row" id="map_section">
-            <div class="col-12 col-m-6 col-lg-2">
-                <label for="exampleFormControlInput1" class="form-label">Confirmar Contraseña:</label>
-                <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Confirme su contraseña" formControlName="conf_contrasena">
-              </div>
-        </div>
-        
-        <br>
         <div style="margin: 1rem;">
-            <button [disabled]="!formRegistro.valid" color="primary" type="button" class="btn btn-success" (click)="actualizarContrasena()">
+            <button [disabled]="!formRegistro.valid" color="primary" type="button" class="btn btn-success" (click)="actualizarUsuario()">
                 Guardar Contraseña
             </button>
         </div>
-       
     </form>
 </div>

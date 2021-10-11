@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EquipoService } from 'src/app/servicios/equipo.service';
+import { OlimpiadasService } from 'src/app/servicios/olimpiadas.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
 
@@ -14,67 +15,61 @@ export class BienvenidaComponent implements OnInit {
 
   
 
-  cliente = {
-    id: '',
-    nombre: '',
-    apellido: '',
+  persona = {
     usuario: '',
-    passv: ''
+    pass: ''
   }
 
-  nombre : string;
-  apellido : string;
-  correo: string;
-  fecha_nacimiento: string;
-  formRegistro: FormGroup;
-  usuario : string
-  id : string;
+  
 
-  constructor(private equipoService: EquipoService, private router:Router, private rutaActiva: ActivatedRoute) {
+  formRegistro: FormGroup;
+  usuario: any
+
+  constructor(private olimpiadaService: OlimpiadasService, private router:Router) {
   }
 
   ngOnInit(): void {
     this.formRegistro = new FormGroup({
-      contrasena: new FormControl('', [Validators.required]),
-      conf_contrasena: new FormControl('', [Validators.required])
+      usuario : new FormControl('', [Validators.required]),
+      contrasena: new FormControl('', [Validators.required])
     })
-    console.log(this.rutaActiva.snapshot.params.id)
-    this.loadCliente(this.rutaActiva.snapshot.params.id)
   
   }
 
-  actualizarContrasena(){
-    console.log("Contraseña actualizada")
+  actualizarUsuario(){
+    var usr = this.formRegistro.get('usuario').value
     var con = this.formRegistro.get('contrasena').value
-    var con2 = this.formRegistro.get('conf_contrasena').value
+    
+    this.persona.usuario = usr
+    this.persona.pass = con
 
-    if(con === con2){
-      this.cliente.passv=con
-      this.equipoService.editarCliente(this.cliente.id, this.cliente ).subscribe()
+    console.log(this.persona)
+    
+    this.olimpiadaService.postUsuario(this.persona).subscribe(
+      (data) => {
+        if(data[0] != null){
+          this.usuario = data[0]
           Swal.fire({
             title: 'Registro correcto',
             text: `Se ingresaron correctamente los datos`,
             icon: 'success',
+          }).then((result) => {
+            if (result.value){
+              var route = "evento/"+this.usuario.codPersona
+              this.router.navigate([route])
+            }
           })
-    }else{
-      Swal.fire({
-        title: 'Error',
-        text: `Por favor ingrese la misma contraseña`,
-        icon: 'warning',
-      })
-    }
-  }
-
-  loadCliente(id: string){
-    this.equipoService.getUnCliente(id).subscribe(
-      (data: any)=>{
-        this.cliente.id=data[0].ID
-        this.cliente.nombre=data[0].NOMBRE
-        this.cliente.apellido=data[0].APELLIDO
-        this.cliente.usuario = this.cliente.nombre.substring(0,2)+ this.cliente.apellido.substring(-3,3)+id
+        }else{ 
+          Swal.fire({
+            title: 'Error',
+            text: `Por favor verifique usuario y contraseña`,
+            icon: 'warning',
+         })
+        }
       }
     )
-    
+
   }
+
   
 }

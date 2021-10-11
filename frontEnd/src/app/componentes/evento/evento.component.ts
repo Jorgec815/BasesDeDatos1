@@ -115,37 +115,21 @@ export class EventoComponent implements OnInit {
   }
 
 
-  onChangeS(data){
-    console.log(data)
-    if (data == undefined){
-      this.sedeSelected = false;
-    }else{
-      this.sede = data
-      console.log(this.sede)
-      this.sedeSelected= true;
-      this.loadAreas(this.sede.idComplejo)
-    }
+  onChangeS(){
+    this.sede = this.formEvento.get('sede').value
+    console.log(this.sede)
+    this.loadAreas(this.sede.IDCOMPLEJO)
   }
 
   onChangeA(data){
-    if (data == undefined){
-      this.areaSelected = false;
-    }else{
-      this.area = data
-      console.log(this.sede)
-      this.areaSelected = true;
-      this.loadDeportes(this.area.idArea)
-    }
+    this.area = this.formEvento.get('area').value
+    console.log(this.area)
+    this.loadDeportes(this.area.IDAREA)
   }
 
   onChangeD(data){
-    if (data == undefined){
-      this.deporteSelected= false;
-    }else{
-      this.deporte = data
-      console.log(this.sede)
-      this.deporteSelected= true;
-    }
+    this.deporte = this.formEvento.get('deporte').value
+    console.log(this.deporte)
   }
 
 
@@ -153,6 +137,9 @@ export class EventoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formEvento = this.formBuilder.group({
+      sede: ['', Validators.required],
+      area: ['', Validators.required],
+      deporte: ['', Validators.required],
       fecha: ['', Validators.required],
       duracion: ['', Validators.required],
       participantes: ['', Validators.required],

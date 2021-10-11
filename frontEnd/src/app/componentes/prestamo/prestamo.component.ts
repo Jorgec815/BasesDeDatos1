@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormGroup,FormControl,Validators, AbstractControl } from '@angular/forms';
 import { OlimpiadasService } from 'src/app/servicios/olimpiadas.service';
 import Swal from 'sweetalert2';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-prestamo',
@@ -66,8 +67,9 @@ export class PrestamoComponent implements OnInit {
     this.olimpiadas.getEstados().subscribe((data:any) =>{
       if (data) {
         var aux = data;
-        var aux2 = data.find(x => x.CONSECINV ===  5)
-        var aux3 = data.find(x => x.CONSECINV ===  6)
+        this.estados = []
+        var aux2 = aux.find(x => x.IDESTADO ===  '5')
+        var aux3 = aux.find(x => x.IDESTADO ===  '6')
         this.estados.push(aux2);
         this.estados.push(aux3);
       }
@@ -84,10 +86,8 @@ export class PrestamoComponent implements OnInit {
 
 
   guardarPrestamo(){
-    var date = this.formPrestamo.get('fecha').value
-    var fechas : string = ""+date
     var evento = {
-      fecha: fechas,
+      fecha: ""+new Date(),
       codpersona: this.codPersona,
       sede: this.sede,
       estado: this.estado,
@@ -142,7 +142,6 @@ export class PrestamoComponent implements OnInit {
       sede: ['', Validators.required],
       equipo: ['', Validators.required],
       estado: ['', Validators.required],
-      fecha: ['', Validators.required],
     });
   }
 

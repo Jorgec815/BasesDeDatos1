@@ -90,9 +90,9 @@ export class EventoComponent implements OnInit {
       duracion: duracions,
       nparticipantes: this.formEvento.get('participantes').value,
       codPersona: this.codPersona,
-      sede: this.sede.idComplejo,
-      area: this.area.idArea,
-      deporte: this.deporte.idDeporte
+      sede: this.sede.IDCOMPLEJO,
+      area: this.area.IDAREA,
+      deporte: this.deporte.IDDEPORTE
     }
 
     this.olimpiadas.postEvento(evento).subscribe((data)=>{
@@ -133,7 +133,7 @@ export class EventoComponent implements OnInit {
     }else{
       this.area = data
       console.log(this.sede)
-      this.areaSelected= true;
+      this.areaSelected = true;
       this.loadDeportes(this.area.idArea)
     }
   }
@@ -153,13 +153,9 @@ export class EventoComponent implements OnInit {
 
   ngOnInit(): void {
     this.formEvento = this.formBuilder.group({
-      sede: ['', Validators.required],
-      area: ['', Validators.required],
-      deporte: ['', Validators.required],
       fecha: ['', Validators.required],
       duracion: ['', Validators.required],
       participantes: ['', Validators.required],
-
     });
   }
 

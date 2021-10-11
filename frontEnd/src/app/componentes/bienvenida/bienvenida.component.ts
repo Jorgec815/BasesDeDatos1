@@ -44,7 +44,7 @@ export class BienvenidaComponent implements OnInit {
     this.persona.pass = con
 
     console.log(this.persona)
-    
+
     this.olimpiadaService.postUsuario(this.persona).subscribe(
       (data) => {
         if(data[0] != null){

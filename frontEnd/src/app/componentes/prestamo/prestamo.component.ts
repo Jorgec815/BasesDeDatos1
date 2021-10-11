@@ -119,10 +119,10 @@ export class PrestamoComponent implements OnInit {
   
   }
 
-  onChangeEQ(data){
-    var aux = this.formPrestamo.get('equipo').value
+  onChangeEQ(){
+    this.inventario = this.formPrestamo.get('equipo').value
+    var aux = this.equipos.find(x => x.CONSECINV ===  this.inventario)
     this.equipo = aux.IDEQUIPO
-    this.inventario = aux.CONSECINV
     console.log(this.equipo)
     this.loadEstados()
   }

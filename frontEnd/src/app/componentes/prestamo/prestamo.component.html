@@ -12,10 +12,10 @@
         <br>
         <div >
             <label for="formGroupExampleInput" class="form-label">Seleccione el equipo para prestamo:</label>
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeEQ($event.value)" formControlName="equipo">
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeEQ()" formControlName="equipo">
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let equipo of equipos" [value]="equipo"  >{{equipo.NOMEQUIPO}}</option>
+                <option *ngFor="let equipo of equipos" [value]="equipo.CONSECINV"  >{{equipo.NOMEQUIPO}}</option>
               </select>
         </div>
         <br>

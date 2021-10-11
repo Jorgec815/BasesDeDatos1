@@ -29,7 +29,6 @@ export class EventoComponent implements OnInit {
     this.codPersona = rutaActiva.snapshot.params.cod
     console.log(this.codPersona)
 
-
   }
 
 

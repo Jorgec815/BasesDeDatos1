@@ -1,8 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AgregarComponent } from './componentes/agregar/agregar.component';
 import { BienvenidaComponent } from './componentes/bienvenida/bienvenida.component';
 import { EventoComponent } from './componentes/evento/evento.component';
+
 
 
 const routes: Routes = [
@@ -13,7 +15,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),CommonModule], 
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

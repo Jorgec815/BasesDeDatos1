@@ -25,6 +25,12 @@ export class OlimpiadasService {
     return this.http.get(this.url+'area/'+idSede)
   }
 
+  //obtener todas las areas
+  getUnicos(idSede: string){
+      return this.http.get(this.url+'deporte_area_unico/'+idSede)
+  }
+  
+
 
   //obtener todas las areas
   getDeportes(idArea: string){

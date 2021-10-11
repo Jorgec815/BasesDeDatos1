@@ -6,7 +6,7 @@
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeS()" formControlName="sede" >
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let sede of sedes" [value]="sede" >{{sede.NOMCOMPLEJO}}</option>
+                <option *ngFor="let sede of sedes" [value]="sede.IDCOMPLEJO" >{{sede.NOMCOMPLEJO}}</option>
               </select>
         </div>
         <br>
@@ -15,7 +15,7 @@
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeA($event.value)" formControlName="area">
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let area of areas" [value]="area" >{{area.NOMAREA}}</option>
+                <option *ngFor="let area of areas" [value]="area.IDAREA" >{{area.NOMAREA}}</option>
               </select>
         </div>
         <br>
@@ -24,7 +24,7 @@
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (change)="onChangeD($event.value)" formControlName="deporte" >
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let deporte of deportes" [value]="deporte" >{{deporte.NOMDEPORTE}}</option>
+                <option *ngFor="let deporte of deportes" [value]="deporte.IDDEPORTE" >{{deporte.NOMDEPORTE}}</option>
               </select>
         </div>
         <br>

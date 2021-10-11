@@ -80,7 +80,7 @@ export class EventoComponent implements OnInit {
   }
 
   loadDeportes(idArea: string){
-    this.olimpiadas.getAreas(idArea).subscribe((data:any) =>{
+    this.olimpiadas.getDeportes(idArea).subscribe((data:any) =>{
       if (data) {
         this.deportes = data;
       }
@@ -103,12 +103,14 @@ export class EventoComponent implements OnInit {
     var evento = {
       fecha: fechas,
       duracion: duracions,
-      nparticipantes: this.formEvento.get('participantes').value,
-      codPersona: this.codPersona,
+      participantes: this.formEvento.get('participantes').value,
+      codpersona: this.codPersona,
       sede: this.sede,
       area: this.area,
-      deporte: this.deporte
+      deporte: Number(this.deporte)
     }
+
+    console.log(evento)
 
     this.olimpiadas.postEvento(evento).subscribe((data)=>{
       if (data[0] != null){

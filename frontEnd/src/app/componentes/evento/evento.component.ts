@@ -28,7 +28,6 @@ export class EventoComponent implements OnInit {
     this.areaSelected=false;
     this.codPersona = rutaActiva.snapshot.params.cod
     console.log(this.codPersona)
-
   }
 
 
@@ -52,6 +51,22 @@ export class EventoComponent implements OnInit {
     this.olimpiadas.getAreas(idSede).subscribe((data:any) =>{
       if (data) {
         this.areas = data;
+      }
+    }, (error) =>{
+      Swal.fire({
+        title: 'Error en la operación', 
+        text: `No se encontraron datos registrados ${JSON.stringify(error)}`,
+        icon: 'warning',
+        showConfirmButton: false,
+        timer: 2500
+      })
+    })
+  }
+
+  loadUnicos(idSede: string){
+    this.olimpiadas.getUnicos(idSede).subscribe((data:any) =>{
+      if (data) {
+        this.deportes = data;
       }
     }, (error) =>{
       Swal.fire({
@@ -90,9 +105,9 @@ export class EventoComponent implements OnInit {
       duracion: duracions,
       nparticipantes: this.formEvento.get('participantes').value,
       codPersona: this.codPersona,
-      sede: this.sede.IDCOMPLEJO,
-      area: this.area.IDAREA,
-      deporte: this.deporte.IDDEPORTE
+      sede: this.sede,
+      area: this.area,
+      deporte: this.deporte
     }
 
     this.olimpiadas.postEvento(evento).subscribe((data)=>{
@@ -118,13 +133,18 @@ export class EventoComponent implements OnInit {
   onChangeS(){
     this.sede = this.formEvento.get('sede').value
     console.log(this.sede)
-    this.loadAreas(this.sede.IDCOMPLEJO)
+
+    if(Number(this.sede) <= 104){
+      this.loadUnicos(this.sede)
+    }else{
+      this.loadAreas(this.sede)
+    }
   }
 
   onChangeA(data){
     this.area = this.formEvento.get('area').value
     console.log(this.area)
-    this.loadDeportes(this.area.IDAREA)
+    this.loadDeportes(this.area)
   }
 
   onChangeD(data){

@@ -55,7 +55,7 @@ export class BienvenidaComponent implements OnInit {
             icon: 'success',
           }).then((result) => {
             if (result.value){
-              var route = "evento/"+this.usuario.codPersona
+              var route = "evento/"+this.usuario.CODPERSONA
               this.router.navigate([route])
             }
           })

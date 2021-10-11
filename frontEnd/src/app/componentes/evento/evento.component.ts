@@ -29,7 +29,6 @@ export class EventoComponent implements OnInit {
     this.codPersona = rutaActiva.snapshot.params.cod
     console.log(this.codPersona)
 
-
   }
 
 
@@ -117,6 +116,7 @@ export class EventoComponent implements OnInit {
 
 
   onChangeS(data){
+    console.log(data)
     if (data == undefined){
       this.sedeSelected = false;
     }else{

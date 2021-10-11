@@ -99,6 +99,10 @@ export class PrestamoComponent implements OnInit {
 
     this.olimpiadas.postPrestamo(evento).subscribe((data) =>{
       if (data[0] != null){
+        var inventario={
+          estado : this.estado
+        }
+        this.olimpiadas.putInventario(this.inventario, inventario).subscribe()
         Swal.fire({
           title: 'Registro correcto',
           text: `Se registro el evento de manera correcta`,

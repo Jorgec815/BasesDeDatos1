@@ -65,7 +65,11 @@ export class PrestamoComponent implements OnInit {
   loadEstados(){
     this.olimpiadas.getEstados().subscribe((data:any) =>{
       if (data) {
-        this.estados = data;
+        var aux = data;
+        var aux2 = data.find(x => x.CONSECINV ===  5)
+        var aux3 = data.find(x => x.CONSECINV ===  6)
+        this.estados.push(aux2);
+        this.estados.push(aux3);
       }
     }, (error) =>{
       Swal.fire({
@@ -121,7 +125,7 @@ export class PrestamoComponent implements OnInit {
 
   onChangeEQ(){
     this.inventario = this.formPrestamo.get('equipo').value
-    var aux = this.equipos.find(x => x.CONSECINV ===  this.inventario)
+    var aux = this.equipos.find(x => x.CONSECINV ===  Number(this.inventario))
     this.equipo = aux.IDEQUIPO
     console.log(this.equipo)
     this.loadEstados()

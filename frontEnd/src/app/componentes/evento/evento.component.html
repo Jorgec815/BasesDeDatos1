@@ -1,48 +1,48 @@
 <div class="container-fluid" >
     <br>
-    <form [formGroup]="">
+    <form [formGroup]="formEvento">
         <div class="row" id="map_section">
             <label for="formGroupExampleInput" class="form-label">Seleccione la sede en la que desea realizar el evento:</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (selectionChange)="onChangeS($event.value)" >
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let sede of sedes" [value]="sede" >{{sede.nomComplejo}}</option>
+                <option *ngFor="let sede of sedes" [value]="sede" >{{sede.NOMCOMPLEJO}}</option>
               </select>
         </div>
         <br>
-        <div class="row" id="map_section" *ngIf="sedeSelected">
+        <div >
             <label for="formGroupExampleInput" class="form-label">Seleccione el area en la que desea realizar el evento:</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (selectionChange)="onChangeA($event.value)" >
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let area of areas" [value]="area" >{{area.nomArea}}</option>
+                <option *ngFor="let area of areas" [value]="area" >{{area.NOMAREA}}</option>
               </select>
         </div>
         <br>
-        <div class="row" id="map_section" *ngIf="areaSelected">
+        <div class="row" id="map_section" >
             <label for="formGroupExampleInput" class="form-label">Deportes permitidos en esta area:</label>
             <select class="form-select form-select-sm" aria-label=".form-select-sm example" (selectionChange)="onChangeD($event.value)" >
                 <option selected>Elija una de las siguientes opciones:</option>
                 <option >--</option>
-                <option *ngFor="let deporte of deportes" [value]="deporte" >{{deporte.nomDeporte}}</option>
+                <option *ngFor="let deporte of deportes" [value]="deporte" >{{deporte.NOMDEPORTE}}</option>
               </select>
         </div>
         <br>
-        <div class="row" id="map_section" *nfIf="deporteSelected">
+        <div class="row" id="map_section">
             <div class="col-12 col-m-6 col-lg-2">
                 <label for="exampleFormControlInput1" class="form-label">Fecha del evento:</label>
                 <input type="date" class="form-control" id="exampleFormControlInput1"  formControlName="fecha">
               </div>
         </div>
         <br>
-        <div class="row" id="map_section" *nfIf="deporteSelected">
+        <div class="row" id="map_section" >
             <div class="col-12 col-m-6 col-lg-2">
                 <label for="exampleFormControlInput1" class="form-label">Duración del evento:</label>
                 <input type="time" class="form-control" id="exampleFormControlInput1"  formControlName="duracion">
               </div>
         </div>
         <br>
-        <div class="row" id="map_section" *nfIf="deporteSelected">
+        <div class="row" id="map_section" >
             <div class="col-12 col-m-6 col-lg-2">
                 <label for="exampleFormControlInput1" class="form-label">Numero de participante:</label>
                 <input type="number" class="form-control" id="exampleFormControlInput1"  formControlName="participantes">

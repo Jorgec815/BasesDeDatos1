@@ -44,7 +44,7 @@ export class BienvenidaComponent implements OnInit {
     this.persona.pass = con
 
     console.log(this.persona)
-    
+
     this.olimpiadaService.postUsuario(this.persona).subscribe(
       (data) => {
         if(data[0] != null){
@@ -55,7 +55,7 @@ export class BienvenidaComponent implements OnInit {
             icon: 'success',
           }).then((result) => {
             if (result.value){
-              var route = "evento/"+this.usuario.codPersona
+              var route = "evento/"+this.usuario.CODPERSONA
               this.router.navigate([route])
             }
           })

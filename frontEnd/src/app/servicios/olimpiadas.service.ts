@@ -58,4 +58,9 @@ export class OlimpiadasService {
     return this.http.post(this.url+"prestamo", data)
   }
 
+  //actualizar inventario
+  putInventario(idInv: string, data){
+    return this.http.put(this.url+"inventario/"+idInv,data)
+  }
+
 }

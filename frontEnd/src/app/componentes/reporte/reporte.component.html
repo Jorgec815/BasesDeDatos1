@@ -1,0 +1,65 @@
+<div>
+    <h1>
+        Generar Reportes
+    </h1>
+    <div>
+        <h2> Bienvenido Director "nombre"</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Sede</li>
+            <li class="list-group-item">
+                <div nz-row>
+                    <p>Fecha: {{now|date:'yyyy-MM-dd'}}</p>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div nz-row>
+                    <p>Hora: {{now|date:'hh:mm:ss'}}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="container-fluid">
+        <br>
+        <form [formGroup]="formRegistro">
+            <div class="row" id="map_section">
+                <div class="col-12 col-m-6 col-lg-2">
+                    <select class="form-select" aria-label="Default select example" formControlName="opcion">
+                        <option selected>Seleccione de quien desea reporte</option>
+                        <option value="1">Pasante</option>
+                        <option value="2">Estudiantes</option>
+                    </select>
+                </div>
+            </div>
+            <div style="margin: 1rem;">
+                <button color="primary" type="button" class="btn btn-success"
+                    (click)="consultar()">
+                    Generar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<br>
+<div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Horas Asistidas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>Mark</td>
+                <td>Otto</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

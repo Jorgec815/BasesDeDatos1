@@ -1,0 +1,38 @@
+<div class="container-fluid" >
+    <h2>Asistencia Docente</h2>
+    <br>
+    <form [formGroup]="formRegistro">
+        <div class="row" id="map_section">
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Nombre:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre del docente" formControlName="nombre">
+            </div>
+            <div class="col-12 col-m-6 col-lg-2">
+                <label for="exampleFormControlInput1" class="form-label">Apellido:</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apellido del docente" formControlName="apellido">
+            </div>
+            <br>
+            <div style="margin: 1rem;">
+                <button [disabled]="!formRegistro.valid" color="primary" type="button" class="btn btn-success" (click)="consultarDocente()">
+                    Consultar
+                </button>
+            </div>
+        </div>
+        <br>
+        <div>
+            <h3>Información del curso</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Curso</li>
+                <li class="list-group-item">Espacio</li>
+                <li class="list-group-item">Deporte</li>
+                <li class="list-group-item">Número de Estudiantes</li>
+                <li class="list-group-item">Elementos disponibles</li>
+            </ul>
+        </div>
+        <div style="margin: 1rem;">
+            <button color="primary" type="button" class="btn btn-success" (click)="registrarAsistencia()">
+                Registrar Asistencia
+            </button>
+        </div>
+    </form>
+</div>

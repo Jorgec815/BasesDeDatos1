@@ -33,7 +33,6 @@ export class AgregarComponent implements OnInit {
       apellido: this.formRegistro.get('apellido').value,
       fechaNacimiento: this.formRegistro.get('fecha_nacimiento').value,
       correo: this.formRegistro.get('correo').value,
-
     }
     console.log(cliente)
     this.equipoService.agregarCliente(cliente).subscribe()

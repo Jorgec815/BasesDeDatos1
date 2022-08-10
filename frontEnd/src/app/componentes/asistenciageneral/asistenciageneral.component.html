@@ -1,0 +1,41 @@
+<div class="container-fluid">
+    <div>
+        <h2> Bienvenido "nombre"</h2>
+        <ul class="list-group">
+            <li class="list-group-item">Sede</li>
+            <li class="list-group-item">
+                <div nz-row>
+                    <p>Fecha: {{now|date:'yyyy-MM-dd'}}</p>
+               </div>
+            </li>
+            <li class="list-group-item">
+                <div nz-row>
+                    <p>Hora: {{now|date:'hh:mm:ss'}}</p>
+               </div>
+            </li>
+        </ul>
+    </div>
+    <br>
+    <h3>
+        Por favor seleccione un tipo de Asistencia
+    </h3>
+    <br>
+    <div class="row" id="map_section">
+        <div class="col-12 col-m-6 col-lg-2">
+            <button color="primary" type="button" class="btn btn-success" (click)="vistaDocente()">
+                Docentes
+            </button>
+        </div>
+        <div class="col-12 col-m-6 col-lg-2">
+            <button color="primary" type="button" class="btn btn-success" (click)="vistaPasante()">
+                Pasantes
+            </button>
+        </div>
+        <div class="col-12 col-m-6 col-lg-2">
+            <button color="primary" type="button" class="btn btn-success" (click)="vistaAsistente()">
+                Asistentes
+            </button>
+        </div>
+    </div>
+    <br>
+</div>

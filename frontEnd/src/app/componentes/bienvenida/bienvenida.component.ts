@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { EquipoService } from 'src/app/servicios/equipo.service';
+import { UnidadDeportivaService } from 'src/app/servicios/unidad-deportiva.service';
 import { OlimpiadasService } from 'src/app/servicios/olimpiadas.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import Swal from 'sweetalert2';
@@ -15,9 +16,8 @@ export class BienvenidaComponent implements OnInit {
 
   
 
-  persona = {
-    usuario: '',
-    pass: ''
+  empleado = {
+    codigo: '',
   }
 
   
@@ -25,27 +25,23 @@ export class BienvenidaComponent implements OnInit {
   formRegistro: FormGroup;
   usuario: any
 
-  constructor(private olimpiadaService: OlimpiadasService, private router:Router) {
+  constructor(private unidadService: UnidadDeportivaService, private router:Router) {
   }
 
   ngOnInit(): void {
     this.formRegistro = new FormGroup({
-      usuario : new FormControl('', [Validators.required]),
-      contrasena: new FormControl('', [Validators.required])
+      codigo : new FormControl('', [Validators.required]),
     })
-  
   }
 
   actualizarUsuario(){
-    var usr = this.formRegistro.get('usuario').value
-    var con = this.formRegistro.get('contrasena').value
+    var cod = this.formRegistro.get('codigo').value
     
-    this.persona.usuario = usr
-    this.persona.pass = con
+    this.empleado.codigo = cod
 
-    console.log(this.persona)
+    console.log(this.empleado)
 
-    this.olimpiadaService.postUsuario(this.persona).subscribe(
+    this.unidadService.getCargo(this.empleado.codigo).subscribe(
       (data) => {
         if(data[0] != null){
           this.usuario = data[0]
@@ -54,9 +50,18 @@ export class BienvenidaComponent implements OnInit {
             text: `Se ingresaron correctamente los datos`,
             icon: 'success',
           }).then((result) => {
-            if (result.value){
-              var route = "evento/"+this.usuario.CODPERSONA
+            if (this.usuario.IDCARGO == '1'){
+              var route = "asistenciaGeneral"
               this.router.navigate([route])
+            }else if (this.usuario.IDCARGO == '3'){
+              var route = "reportes"
+              this.router.navigate([route])
+            }else {
+              Swal.fire({
+                title: 'Error',
+                text: `Usted no se encuentra habilidado para el sistema`,
+                icon: 'warning',
+             })
             }
           })
         }else{ 
@@ -67,9 +72,7 @@ export class BienvenidaComponent implements OnInit {
          })
         }
       }
-    )
+    ) 
 
   }
-
-  
 }
